@@ -1,0 +1,64 @@
+{
+    "dataset.csv.path": "config\\maps\\dataset.csv",
+    "train.file.path": "config\\maps\\train.csv",
+    "test.file.path": "config\\maps\\test.csv",
+    "validation.file.path": "config\\maps\\validation.csv",
+    
+    "dtype.float32.byte": 4,
+    "dtype.int8.byte": 1,
+
+    "spec.logmel.sampling": 16000,
+    "spec.logmel.sample.size": 2048000,
+    "spec.logmel.lower.edge": 30.0,
+    "spec.logmel.upper.edge": 8000.0,
+    "spec.logmel.n_mel": 229,
+    "spec.logmel.fft_length": 2048,
+    "spec.logmel.frame_length": 2048,
+    "spec.logmel.hop_length": 128,
+    "spec.logmel.window": "hann",
+
+    "spec.cqt.sampling": 44100,
+    "spec.cqt.sample.size": 20480000,
+    "spec.cqt.n_bins": 356,
+    "spec.cqt.bins_per_octave": 48,
+    "spec.cqt.fmin": 27.5,
+    "spec.cqt.frame_length": 2048,
+    "spec.cqt.hop_length": 512,
+    "spec.cqt.window": "hann",
+
+    "detect.train.epoch": 30,
+    "detect.train.batch.size": 1024,
+    "detect.train.dense.pi.init": 0.01,
+    "detect.weight.loss.posweigh": 4,
+    "detect.focal.loss.multistart.at": 0.8,
+    "detect.focal.loss.common.at": 0.5,
+    "detect.focal.loss.multiduration.at": 0.8,
+    "detect.focal.loss.gamma": 2,
+    "detect.train.fn.threshold": 0.49,
+    "detect.train.fn.beta": 2,
+
+    "detect.predict.batch.size": 2048,
+    "detect.predict.mulstart.threshold": 0.5,
+    "detect.predict.comstart.threshold": 0.5,
+    "detect.predict.mulduration.threshold": 0.5,
+
+    "detect.tone.slice": 9,
+    "detect.tone.epoch.steps": 4162,
+    "detect.start.common.slice": 9,
+    "detect.start.common.epoch.steps": 4162,
+
+    "detect.model.png.path": "models",
+    "detect.model.tensorboar.path": "models\\tensorboard",
+    "detect.model.checkpoint.path": "models\\checkpoint",
+    "detect.model.save.path": "models\\save",
+    "detect.model.history.path": "models\\history",
+    "detect.model.loss.path": "models\\loss",
+
+    "detect.model.multistart.weight": "models\\checkpoint\\multitone_start\\chckpt_2021-05-11-14_57_5830.hdf5",
+    "detect.model.commonstart.weight": "models\\checkpoint\\common_start\\chckpt_2021-05-11-13_27_3530.hdf5",
+    "detect.model.multiduration.weight": "models\\checkpoint\\multitone_duration\\chckpt_2021-05-11-10_50_1330.hdf5",
+
+    "eval.model.result.path": "models\\result",
+
+    "eof": 0
+}

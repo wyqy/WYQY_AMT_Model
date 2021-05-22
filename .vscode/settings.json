@@ -1,0 +1,15 @@
+{
+    "python.pythonPath": "G:\\Program-Files\\Anaconda\\envs\\tensorflow\\python.exe",
+    "jupyter.jupyterServerType": "local",
+    "python.analysis.extraPaths": [
+        "src/component"
+        // "src/prototype/note_detection",
+        // "src/prototype/preprocessing"
+    ],
+    "python.autoComplete.extraPaths": [
+        "src",
+        "src/component"
+        // "src/prototype/note_detection",
+        // "src/prototype/preprocessing"
+    ]
+}
