@@ -254,7 +254,44 @@ def eval_all_pitch(multitone_start_path, common_start_path, multitone_duration_p
         'Offset_Recall',
         'Offset_F-measure']
     # 保存为csv
-    csv_path = os.path.join(initial.config[eval.model.result.path], 'all_pitch.csv')
+    csv_path = os.path.join(initial.config['eval.model.result.path'], 'all_pitch.csv')
+    df.to_csv(csv_path)
+    return df
+
+
+def est_each_pitch():
+    '''
+eval_each_pitch函数
+    功能: 使用测试集进行模型验证, 基于音符
+    返回: 数据组成的数组
+    '''
+    # 生成向量
+    results = np.zeros((88, 1), dtype=np.float32)
+    labels_overall = np.zeros((0, 3))
+    # 遍历计算
+    for file_offset in range(initial.testsets.shape[0]):
+        # 取路径
+        audio_path = initial.testsets.iloc[file_offset].at['audio_filename']
+        txt_path = audio_path[:-3] + 'txt'
+        # 得到标准值
+        labels = pd.read_table(txt_path, header=0, encoding='utf-8')
+        labels = np.array(labels)
+        labels_overall = np.append(labels_overall, labels, axis=0)
+
+    # 按不同音高计算
+    for pitch_offset in range(0, 88):
+        # 抽取对应音高数据
+        pitch_index = pitch_offset + 21
+        results[pitch_offset, 0] = sum(labels_overall[:, -1] == pitch_index)
+
+    # 加权平均
+    # return np.mean(results, axis=0)
+    # 作为DataFrame返回
+    df = pd.DataFrame(results)
+    df.columns = ['count']
+    # 保存为csv
+    csv_path = os.path.join(
+        initial.config['eval.model.result.path'], 'est_each_pitch.csv')
     df.to_csv(csv_path)
     return df
 
@@ -343,7 +380,7 @@ def eval_each_pitch(multitone_start_path, common_start_path, multitone_duration_
         'Offset_Recall',
         'Offset_F-measure']
     # 保存为csv
-    csv_path = os.path.join(initial.config[eval.model.result.path], 'each_pitch.csv')
+    csv_path = os.path.join(initial.config['eval.model.result.path'], 'each_pitch.csv')
     df.to_csv(csv_path)
     return df
 
