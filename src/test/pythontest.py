@@ -175,6 +175,20 @@ a = pm.PrettyMIDI('data\MAPS_MUS-bk_xmas1_ENSTDkAm.mid')
 a.get_piano_roll(fs=125).shape
 a.instruments
 a.instruments[0].notes[0]
+ret = np.zeros((len(a.instruments[0].notes), 3))
+for index in range(len(a.instruments[0].notes)):
+    ret[index, 0] = a.instruments[0].notes[index].start
+    ret[index, 1] = a.instruments[0].notes[index].end
+    ret[index, 2] = a.instruments[0].notes[index].pitch
+
+df = pd.DataFrame(ret)
+df.columns = [
+    'onset',
+    'offset',
+    'pitch']
+# 保存为csv
+csv_path = 'models\\result\\midi_notes.csv'
+df.to_csv(csv_path)
 a.key_signature_changes # 调式改变
 a.time_signature_changes # 节拍改变
 
