@@ -36,6 +36,37 @@ def plot_single_transform(transform, cmap='jet'):
     # plt.close('all')
 
 
+def plot_single_label(transform, cmap='jet'):
+    """
+    plot_single_transform函数
+    功能: 输入二维Tensor表示, 输出图像
+    输入: transform张量(m纵轴 x n横轴)
+    输出:
+    """
+
+    # 准备画布
+    plt.close()
+    plt.figure(num=1, figsize=(10, 5), dpi=100)
+
+    # 在画布上绘图
+    # xyz: x行y列第几张子图
+    plt.subplot(111)
+    plt.imshow(np.transpose(transform),
+               # https://matplotlib.org/2.0.2/users/colormaps.html
+               cmap=plt.cm.get_cmap(cmap),
+               vmin=0.0, vmax=1.0,
+               aspect='auto',
+               interpolation='none',
+               origin='lower')
+    plt.ylabel('Label Channel(s)', fontsize=15)
+    plt.xlabel('Frame(s)', fontsize=15)
+    plt.title('Label', fontsize=18)
+    plt.axis('on')
+
+    # 展示图
+    plt.show()
+
+
 def plot_dual_transform(transform_1, transform_2, cmap_1='jet', cmap_2='gray_r'):
     '''
     plot_dual_transform函数:
